@@ -8,7 +8,7 @@ Internal Project Management & Timesheet tool.
 
 ## Features
 
-- **Admin role** (`ADMIN` / `ADMIN123`) — create users, delete users, reset passwords, assign tasks, full edit on every task, view everyone's timesheets (monitor mode), see everything.
+- **Admin role** (`ADMIN` / `****`) — create users, delete users, reset passwords, assign tasks, full edit on every task, view everyone's timesheets (monitor mode), see everything.
 - **New-user password flow** — every account created by an admin starts with the default password `Welcome` and is forced to set its own password on the very first sign-in (verified against the current password). Resetting a password also re-enables that prompt.
 - **Email alerts** *(optional)* — when a task is assigned to someone, they get an email: *"Hey {name}, you have a task awaiting you"* with task details and a link straight to it. When a task is marked **Completed**, the **creator** gets the "task completed" email. Add/update each member's email under **Team & Users** → edit (pencil) button.
 - **User role** — can create tasks (auto or manual task ID) and assign them to a responsible person. A user who **created** a task gets full edit control over it (title, priority, due date, task type, % complete, comments, etc.). On tasks created by someone else, users can only **change status and add comments** (and only if the task is assigned to them — everything else is read-only).
@@ -29,7 +29,7 @@ Internal Project Management & Timesheet tool.
    npm install
    ```
 
-2. Configure the database in `.env` (already filled with your Supabase connection):
+2. Configure the database in `.env`:
 
    ```
    PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD
