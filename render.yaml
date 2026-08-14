@@ -1,0 +1,51 @@
+# Render Blueprint — deploy "New +" -> Blueprint (or import this file from the dashboard).
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: zita-plm
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # Leave these sync:false and fill in the values in
+      # Dashboard -> zita-plm -> Environment after creation.
+      - key: PGHOST
+        sync: false
+      - key: PGPORT
+        sync: false
+      - key: PGDATABASE
+        sync: false
+      - key: PGUSER
+        sync: false
+      - key: PGPASSWORD
+        sync: false
+      - key: PGSSL
+        value: "true"
+      - key: TOKEN_SECRET
+        generateValue: true
+      # Optional email notifications (Gmail SMTP). EMAIL_ENABLED must stay "true"
+      # so Blueprint deploys don't switch notifications back off. Fill
+      # SMTP_USER/SMTP_PASS (Gmail app password) + APP_URL to enable task emails.
+      - key: EMAIL_ENABLED
+        value: "true"
+      - key: APP_URL
+        sync: false
+      - key: SMTP_HOST
+        value: "smtp.gmail.com"
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      # Recommended: use Resend REST API instead of SMTP. Render free tier blocks
+      # outbound SMTP (25/465/587) but allows HTTPS. Create a free key at
+      # resend.com -> API Keys, then set RESEND_API_KEY. When present, mailer uses
+      # HTTPS and ignores SMTP_*.
+      - key: RESEND_API_KEY
+        sync: false
